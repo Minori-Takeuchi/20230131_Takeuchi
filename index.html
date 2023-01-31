@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- tab-menu -->
+  <div class="tub" id="app">
+    <ul class="tab-menu">
+      <li v-on:click="changeTab(1)" :class="{'active': tabMenu.isActive === 1}" class="tab-item">タブ1</li>
+      <li v-on:click="changeTab(2)" :class="{'active': tabMenu.isActive === 2}" class="tab-item">タブ2</li>
+      <li v-on:click="changeTab(3)" :class="{'active': tabMenu.isActive === 3}" class="tab-item">タブ3</li>
+    </ul>
+    <ul class="tab-contents">
+      <li v-if="tabMenu.isActive === 1" class="tab-content">コンテンツ1</li>
+      <li v-if="tabMenu.isActive === 2" class="tab-content">コンテンツ2</li>
+      <li v-if="tabMenu.isActive === 3" class="tab-content">コンテンツ3</li>
+    </ul>
+    <!-- modal -->
+    <input v-on:click="open" v-show="!modal.show" type="button" value="開く" class="openBtn">
+    <div v-show="modal.show" class="modal">
+      <div v-on:click="close" class="modal-overlay"></div>
+      <div class="modal-wrap">
+        <h2 class="modal-txt">モーダルウインドウ</h2>
+        <input v-on:click="close" type="button" value="閉じる" class="closeBtn">
+      </div>
+    </div>
+    <!-- real-time search -->
+    <div class="search">
+      <input type="text" v-model="keyword" class="search-txt">
+      <div v-show="!keyword" v-for="name in names" key="name" class="search-content">{{ name }}</div>
+      <div v-show="keyword" v-for="name in filterName" key="name" class="search-content">{{ name }}</div>
+      <p>{{ searchName }}</p>
+    </div>
+
+  </div>
+
+</body>
+<script>
+  new Vue ({
+    el: '#app',
+    data: {
+      // tab-menu
+      tabMenu: {
+        isActive: 1
+      },
+      // modal
+      modal: {
+        show: false
+      },
+      // real-time search
+      names: [
+        '田中', '佐藤', '山田', '鈴木'
+      ],
+      keyword: '',
+    },
+    methods: {
+    //tab-menu 
+    changeTab: function(number) {
+      this.tabMenu.isActive = number
+    },
+    //modal
+    open: function() {
+      this.modal.show = true
+    },
+    close: function() {
+      this.modal.show = false
+    }
+    },
+    computed: {
+    filterName: function () {
+      var names = []
+        for (var i in this.names) {
+          var name = this.names[i];
+          if (name.indexOf(this.keyword) !== -1) {
+            names.push(name)
+          }
+        }
+        return names
+      }
+    }
+  });
+</script>
+</html>

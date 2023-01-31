@@ -1,0 +1,105 @@
+/* tab-menu */
+.tab {
+  width: 500px;
+  margin-bottom: 50px;
+}
+
+.tab-menu {
+  display: flex;
+  margin: 0;
+}
+
+.tab-item {
+  text-align: center;
+  padding: 10px 0;
+  cursor: pointer;
+  list-style: none;
+  width: 100px;
+  border-top: 1px solid #000;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+}
+
+.tab-item:not(:first-child) {
+  border-left: none;
+}
+
+.tab-item.active {
+  background: #000;
+  color: #fff;
+}
+
+.tab-contents {
+  height: 200px;
+  border: 3px solid #000;
+}
+
+.tab-content {
+  font-size: 40px;
+  padding: 10px;
+}
+
+/* modal */
+.openBtn {
+  display: block;
+  margin: 50px 20px;
+}
+
+.modal{
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-wrap {
+  width: 500px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 150px;
+  padding: 20px;
+  position: absolute;
+  z-index: 2;
+  background-color: #fff;
+}
+
+.modal-txt {
+  width: 100%;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.closeBtn {
+  display: block;
+}
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* real-time search */
+.search {
+  display: block;
+  margin-left: 20px;
+}
+
+.search-txt {
+  border: 3px solid green;
+  border-radius: 5px;
+  height: 24px;
+  width: 300px;
+  margin-top: 40px;
+}
+
+.search-content {
+  font-size: x-large;
+  line-height: 30px;
+}
